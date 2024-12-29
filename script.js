@@ -1,39 +1,35 @@
-const num = [20,25,39,46];
+const num =[1,2,3,4];
 
 
-// const ans = num.filter((eachNum)=>{
-//   return (eachNum > 20);
-// })
+// const ans = num.reduce((acc,curr)=>{
+
+//   return (acc+curr)
+
+// },0);
 
 
+// console.log(ans);
 
-// polyfil for filter
-
-Array.prototype.customFilter = function (callBack)
+Array.prototype.customReduce = function (callBack)
 {
-   const res = [];
+  
+let res = 0;
+  for(let i=0;i<this.length;i++)
+  {
+    res = callBack(this[i] , res);
+  }
 
-   for(let i=0;i<this.length;i++)
-   {
-   if((callBack(this[i] , i , this)))
-   {
-    res.push(this[i])
-   }
-   }
+  return res;
 
-   return res;
 
 }
 
-function check(number , index , arr)
+function add(number,res)
 {
- if(number > 30)
- {
-  return true;
- }
- return false;
+  
+  return(number + res);
+  
 }
 
-const ans =num.customFilter(check);
-
-console.log(ans)
+const ans =num.customReduce(add);
+console.log(ans);
