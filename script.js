@@ -1,35 +1,37 @@
-const num =[1,2,3,4];
+// function sum(a)
+// {
 
-
-// const ans = num.reduce((acc,curr)=>{
-
-//   return (acc+curr)
-
-// },0);
-
-
-// console.log(ans);
-
-Array.prototype.customReduce = function (callBack)
-{
+//   return function (b)
+//   {
+//     if(b)
+//     {
+//       // we ve another argument
+      
+//       return sum(a+b)
+//     }
+//     // console.log("b exist")
+//     return (a);
+//   }
   
-let res = 0;
-  for(let i=0;i<this.length;i++)
-  {
-    res = callBack(this[i] , res);
-  }
+  
+// }
 
-  return res;
+// console.log(sum(1)(5)(7));
 
 
+function sum(a) {
+  return function (b) {
+    if (b) {
+       console.log(`Intermediate sum: ${a + b}`);
+      return sum(a + b);
+    }
+    // console.log("Intermediate sum:" ,a);
+    return a;
+  };
 }
 
-function add(number,res)
-{
-  
-  return(number + res);
-  
-}
+// Example usage:
 
-const ans =num.customReduce(add);
-console.log(ans);
+ const ans = sum(1)(4)(8)(6)(1); // Logs intermediate sums and final output
+
+ console.log(ans())
